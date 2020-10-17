@@ -14,11 +14,9 @@
           overlays = overlays;
         });
     in ({
-      overlays = {
-        tools =
-          (final: prev: { fawkes = (prev.callPackage ./pkgs/fawkes { }); });
-      };
+      overlay = (final: prev: (import ./pkgs prev));
+      overlays = { tools = (final: prev: (import ./pkgs/tools prev)); };
     } // (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system: {
-      packages = { fawkes = (importer [ self.overlays.tools ] system).fawkes; };
+      packages = { fawkes = (importer [ self.overlay ] system).fawkes; };
     })));
 }
