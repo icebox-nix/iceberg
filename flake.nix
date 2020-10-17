@@ -15,8 +15,15 @@
         });
     in ({
       overlay = (final: prev: (import ./pkgs prev));
-      overlays = { tools = (final: prev: (import ./pkgs/tools prev)); };
+      overlays = {
+        tools = (final: prev: (import ./pkgs/tools prev));
+        science = (final: prev: (import ./pkgs/science prev));
+      };
     } // (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system: {
-      packages = { fawkes = (importer [ self.overlay ] system).fawkes; };
+      packages = {
+        fawkes = (importer [ self.overlay ] system).fawkes;
+        wolfram-engine = (importer [ self.overlay ] system).wolfram-engine;
+        wolframscript = (importer [ self.overlay ] system).wolframscript;
+      };
     })));
 }

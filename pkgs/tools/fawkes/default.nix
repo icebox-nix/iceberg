@@ -15,7 +15,6 @@ stdenv.mkDerivation rec {
   buildInputs = [ zlib ];
 
   installPhase = ''
-    mkdir -p $out/bin/
     install -D -m755 ../protection-${version} $out/bin/fawkes
   '';
 }
