@@ -1,4 +1,4 @@
 prev: {
   wolfram-engine = (prev.callPackage ./wolfram-engine { });
-  wolframscript = (prev.callPackage ./wolframscript { });
+  wolfram-jupyter-kernel = (prev.callPackage ./wolfram-jupyter-kernel { });
 }

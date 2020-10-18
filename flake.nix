@@ -19,11 +19,15 @@
         tools = (final: prev: (import ./pkgs/tools prev));
         science = (final: prev: (import ./pkgs/science prev));
       };
+      nixosModules = {
+        wolfram-jupyter = (import ./modules/science/wolfram-jupyter);
+      };
     } // (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system: {
       packages = {
         fawkes = (importer [ self.overlay ] system).fawkes;
         wolfram-engine = (importer [ self.overlay ] system).wolfram-engine;
-        wolframscript = (importer [ self.overlay ] system).wolframscript;
+        wolfram-jupyter-kernel =
+          (importer [ self.overlay ] system).wolfram-jupyter-kernel;
       };
     })));
 }
