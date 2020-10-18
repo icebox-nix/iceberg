@@ -1,0 +1,29 @@
+* What is it
+=wolfram-jupyter= is a NixOS module that helps you to setup the Jupyter kernel for Wolfram Language which is supported by Wolfram Engine.\\
+With Wolfram Language support, one can easily manipulate and use thousands of builtin functions to perform scientific calculations.
+* How to setup
+** Step 1
+Use =iceberg='s =science= overlay.\\
+Add =pkgs.wolfram-engine= to your package list to install it.
+** Step 2
+Start =wolframscript= from terminal, and key in your Wolfram ID account and password to get a license.\\
+Once activated, get the content of your mathpass:
+#+BEGIN_SRC bash
+cat ~/.WolframEngine/Licensing/mathpass
+#+END_SRC
+Copy the output.
+** Step 3
+Put =iceberg.nixosModules.wolfram-jupyter= into your flake module list.\\
+#+BEGIN_SRC nix
+{
+  services.jupyter = {
+    enable = true;
+    password = "Your password here. See NixOS configuration manual for detail";
+  };
+  iceberg.wolfram-jupyter = {
+    enable = true;
+    mathpass = "Your mathpass";
+  };
+}
+#+END_SRC
+After rebuilding, it should be up and running at [[http://127.0.0.1:8888][localhost]].
