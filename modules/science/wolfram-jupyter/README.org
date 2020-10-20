@@ -27,3 +27,7 @@ Put =iceberg.nixosModules.wolfram-jupyter= into your flake module list.\\
 }
 #+END_SRC
 After rebuilding, it should be up and running at [[http://127.0.0.1:8888][localhost]].
+* Note
+The =WolframKernel= cannot be running simultaneously with the same activation key.\\
+This means when you are launching =wolframscript= from your terminal as a normal user (say user =foo=), it would be impossible to have Wolfram Engine running on Jupyter at the same time.\\
+However, if you exit the =wolframscript=, Jupyter would be working again. Vice Versa.
