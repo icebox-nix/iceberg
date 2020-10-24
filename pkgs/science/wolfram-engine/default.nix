@@ -1,7 +1,7 @@
-{ stdenv, coreutils, patchelf, requireFile, callPackage, makeWrapper, alsaLib
-, dbus, fontconfig, freetype, gcc, glib, libssh2, ncurses, opencv2, openssl
-, unixODBC, xkeyboard_config, xorg, zlib, libxml2, libuuid, lang ? "en", libGL
-, libGLU, fetchurl, fakeroot, buildFHSUserEnv, dbus_libs, runCommand }:
+{ stdenv, coreutils, patchelf, callPackage, makeWrapper, alsaLib, dbus
+, fontconfig, freetype, gcc, glib, libssh2, ncurses, opencv2, openssl, unixODBC
+, xkeyboard_config, xorg, zlib, libxml2, libuuid, libGL, libGLU, fetchurl
+, fakeroot, buildFHSUserEnv, dbus_libs, runCommand }:
 
 let
   wolfram-engine = stdenv.mkDerivation rec {
