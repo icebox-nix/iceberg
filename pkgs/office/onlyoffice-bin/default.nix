@@ -73,8 +73,8 @@ in stdenv.mkDerivation rec {
     mv opt/onlyoffice/desktopeditors $out/share
     ln -s $out/share/desktopeditors/DesktopEditors $out/bin/DesktopEditors
     substituteInPlace $out/share/applications/onlyoffice-desktopeditors.desktop \
-      --replace "/usr/bin/onlyoffice-desktopeditor" "$out/bin/DesktopEditors"
-      '';
+      --replace "/usr/bin/onlyoffice-desktopeditor" "$out/bin/DesktopEditor"
+  '';
 
   preFixup = ''
     gappsWrapperArgs+=(--prefix LD_LIBRARY_PATH : "${runtimeLibs}" )
