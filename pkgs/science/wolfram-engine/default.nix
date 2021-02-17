@@ -1,4 +1,4 @@
-{ stdenv, coreutils, patchelf, callPackage, makeWrapper, alsaLib, dbus
+{ lib, stdenv, coreutils, patchelf, callPackage, makeWrapper, alsaLib, dbus
 , fontconfig, freetype, gcc, glib, libssh2, ncurses, opencv2, openssl, unixODBC
 , xkeyboard_config, xorg, zlib, libxml2, libuuid, libGL, libGLU, fetchurl
 , fakeroot, buildFHSUserEnv, dbus_libs, runCommand }:
@@ -53,9 +53,9 @@ let
       libSM
     ]);
 
-    ldpath = stdenv.lib.makeLibraryPath buildInputs
-      + stdenv.lib.optionalString (stdenv.hostPlatform.system == "x86_64-linux")
-      (":" + stdenv.lib.makeSearchPathOutput "lib" "lib64" buildInputs);
+    ldpath = lib.makeLibraryPath buildInputs
+      + lib.optionalString (stdenv.hostPlatform.system == "x86_64-linux")
+      (":" + lib.makeSearchPathOutput "lib" "lib64" buildInputs);
 
     unpackPhase = ''
       echo "=== Extracting makeself archive ==="
