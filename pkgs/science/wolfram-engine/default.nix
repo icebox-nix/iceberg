@@ -10,7 +10,7 @@ let
     src = fetchurl {
       url =
         "https://account.wolfram.com/download/public/wolfram-engine/desktop/LINUX";
-      sha256 = "1p7rhjzrl7k141c8kns007rf6088xpcyh8q8pkji5nshfmlqja25";
+      sha256 = "1jrxb403cdjmzjw12y1f9m2lsks48rhka28cx3c9h3wjl5hczqd9";
     };
 
     nativeBuildInputs = [ fakeroot ];
