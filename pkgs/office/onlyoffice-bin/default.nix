@@ -55,6 +55,7 @@ in stdenv.mkDerivation rec {
     libpulseaudio
   ];
 
+  dontWrapQtApps = true;
   nativeBuildInputs = [ wrapGAppsHook autoPatchelfHook makeWrapper dpkg ];
 
   runtimeLibs = lib.makeLibraryPath [ libudev0-shim glibc curl pulseaudio ];
