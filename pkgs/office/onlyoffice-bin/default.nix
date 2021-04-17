@@ -1,6 +1,6 @@
 # Credit: https://github.com/GTrunSec/onlyoffice-desktopeditors-flake
 
-{ stdenv, fetchurl, gnome3, glib, gtk3, gtk2, cairo, atk, gdk-pixbuf
+{ libdrm, stdenv, fetchurl, gnome3, glib, gtk3, gtk2, cairo, atk, gdk-pixbuf
 , at-spi2-atk, dbus, dconf, gst_all_1, qt5, xorg, nss, nspr, alsaLib, fontconfig
 , libpulseaudio, libudev0-shim, glibc, curl, pulseaudio, wrapGAppsHook
 , autoPatchelfHook, makeWrapper, dpkg, lib, xkeyboard_config }:
@@ -53,6 +53,7 @@ in stdenv.mkDerivation rec {
     alsaLib
     fontconfig
     libpulseaudio
+    libdrm
   ];
 
   dontWrapQtApps = true;
