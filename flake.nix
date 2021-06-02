@@ -28,6 +28,8 @@
         fawkes = (importer [ self.overlay ] system).fawkes;
         onlyoffice-bin = (importer [ self.overlay ] system).onlyoffice-bin;
         wolfram-engine = (importer [ self.overlay ] system).wolfram-engine;
+        mathematica-patched =
+          (importer [ self.overlay ] system).mathematica-patched;
         wolfram-jupyter-kernel =
           (importer [ self.overlay ] system).wolfram-jupyter-kernel;
       };
