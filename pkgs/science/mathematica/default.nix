@@ -1,7 +1,7 @@
 { lib, stdenv, runCommand, buildFHSUserEnv, requireFile, coreutils, patchelf
 , callPackage, makeWrapper, alsaLib, dbus, dbus_libs, fontconfig, freetype, gcc
 , glib, libssh2, ncurses, opencv4, openssl, unixODBC, xkeyboard_config, xorg
-, zlib, libxml2, libuuid, lang ? "en", libGL, libGLU }:
+, zlib, libxml2, libuuid, libGL, libGLU }:
 
 let
   mathematica = stdenv.mkDerivation rec {
@@ -139,9 +139,17 @@ let
   };
 in runCommand mathematica.name { nativeBuildInputs = [ makeWrapper ]; } ''
   mkdir -p "$out/bin"
+  mkdir -p "$out/share/applications"
+  mkdir -p "$out/share/icons/hicolor/32x32/apps"
+  mkdir -p "$out/share/icons/hicolor/64x64/apps"
+  mkdir -p "$out/share/icons/hicolor/128x128/apps"
   for i in "${mathematica}/libexec/Mathematica/Executables/"* "${mathematica}/libexec/Mathematica/SystemFiles/Kernel/Binaries/Linux-x86-64/"*; do
     base="$(basename "$i")"
     echo "Wrapping $base"
     makeWrapper ${env}/bin/${env.name} "$out/bin/$base" --add-flags "$i"
   done
+  cp ${mathematica}/libexec/Mathematica/SystemFiles/Installation/wolfram-mathematica12.desktop $out/share/applications/
+  cp ${mathematica}/libexec/Mathematica/SystemFiles/FrontEnd/SystemResources/X/App-32.png $out/share/icons/hicolor/32x32/apps/wolfram-mathematica.png
+  cp ${mathematica}/libexec/Mathematica/SystemFiles/FrontEnd/SystemResources/X/App-64.png $out/share/icons/hicolor/64x64/apps/wolfram-mathematica.png
+  cp ${mathematica}/libexec/Mathematica/SystemFiles/FrontEnd/SystemResources/X/App-128.png $out/share/icons/hicolor/128x128/apps/wolfram-mathematica.png
 ''
