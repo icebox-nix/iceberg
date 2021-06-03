@@ -149,6 +149,8 @@ in runCommand mathematica.name { nativeBuildInputs = [ makeWrapper ]; } ''
     makeWrapper ${env}/bin/${env.name} "$out/bin/$base" --add-flags "$i"
   done
   cp ${mathematica}/libexec/Mathematica/SystemFiles/Installation/wolfram-mathematica12.desktop $out/share/applications/
+  substituteInPlace $out/share/applications/wolfram-mathematica12.desktop --replace "${mathematica}/libexec/Mathematica/Executables/Mathematica" $out/bin/Mathematica
+
   cp ${mathematica}/libexec/Mathematica/SystemFiles/FrontEnd/SystemResources/X/App-32.png $out/share/icons/hicolor/32x32/apps/wolfram-mathematica.png
   cp ${mathematica}/libexec/Mathematica/SystemFiles/FrontEnd/SystemResources/X/App-64.png $out/share/icons/hicolor/64x64/apps/wolfram-mathematica.png
   cp ${mathematica}/libexec/Mathematica/SystemFiles/FrontEnd/SystemResources/X/App-128.png $out/share/icons/hicolor/128x128/apps/wolfram-mathematica.png
