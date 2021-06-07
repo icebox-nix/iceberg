@@ -1,7 +1,7 @@
 { lib, stdenv, runCommand, buildFHSUserEnv, requireFile, coreutils, patchelf
 , callPackage, makeWrapper, alsaLib, dbus, dbus_libs, fontconfig, freetype, gcc
 , glib, libssh2, ncurses, opencv4, openssl, unixODBC, xkeyboard_config, xorg
-, zlib, libxml2, libuuid, libGL, libGLU }:
+, zlib, libxml2, libuuid, libGL, libGLU, libdrm }:
 
 let
   mathematica = stdenv.mkDerivation rec {
@@ -134,7 +134,7 @@ let
 
   env = buildFHSUserEnv {
     name = "${mathematica.name}-env";
-    targetPkgs = pkgs': [ mathematica dbus_libs ];
+    targetPkgs = pkgs': [ mathematica dbus_libs libdrm ];
     runScript = "";
   };
 in runCommand mathematica.name { nativeBuildInputs = [ makeWrapper ]; } ''
